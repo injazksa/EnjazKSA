@@ -656,6 +656,7 @@
         // نظام الطباعة المباشرة من المتصفح
         // ==========================================
         function printRequirement(type, title) {
+            console.log("Printing for:", type, title);
             const list = requirements[type] || requirements['spec'];
             const today = new Date().toLocaleDateString('ar-JO', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -663,25 +664,36 @@
             const cleanTitle = removeEmojis(title);
 
             // تعبئة بيانات الطباعة
-            document.getElementById('printDateContainer').innerHTML = `تاريخ الإصدار: ${today}`;
-            document.getElementById('printTitle').innerHTML = `قائمة المتطلبات الرسمية لمهنة: ${cleanTitle}`;
+            const printDateContainer = document.getElementById('printDateContainer');
+            const printTitle = document.getElementById('printTitle');
+            const printListContainer = document.getElementById('printListContainer');
+            const printContent = document.getElementById('printContent');
+
+            if (printDateContainer) printDateContainer.innerHTML = `تاريخ الإصدار: ${today}`;
+            if (printTitle) printTitle.innerHTML = `قائمة المتطلبات الرسمية لمهنة: ${cleanTitle}`;
             
             // تعبئة قائمة المتطلبات مع إزالة الإيموجي
-            const listHTML = list.map(item => {
-                const cleanItem = removeEmojis(item);
-                return `
-                    <div class="print-list-item">
-                        <div class="print-checkbox"></div>
-                        <span>${cleanItem}</span>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('printListContainer').innerHTML = listHTML;
+            if (printListContainer) {
+                const listHTML = list.map(item => {
+                    const cleanItem = removeEmojis(item);
+                    return `
+                        <div class="print-list-item">
+                            <div class="print-checkbox"></div>
+                            <span>${cleanItem}</span>
+                        </div>
+                    `;
+                }).join('');
+                printListContainer.innerHTML = listHTML;
+            }
             
-            // استدعاء الطباعة مباشرة من المتصفح
-            setTimeout(() => {
+            // إظهار المحتوى للطباعة ثم إخفاؤه
+            if (printContent) {
+                printContent.style.display = 'block';
                 window.print();
-            }, 100);
+                printContent.style.display = 'none';
+            } else {
+                window.print();
+            }
         }
 
         // تحميل البيانات عند فتح الصفحة
