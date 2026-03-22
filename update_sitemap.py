@@ -36,7 +36,12 @@ sitemap_content += f'    <url>\n        <loc>{SITE_URL}/</loc>\n        <lastmod
 for page in static_pages:
     if os.path.exists(page["path"]):
         lastmod = get_lastmod(page["path"])
-        sitemap_content += f'    <url>\n        <loc>{SITE_URL}/{page["path"]}</loc>\n        <lastmod>{lastmod}</lastmod>\n        <changefreq>{page["freq"]}</changefreq>\n        <priority>{page["priority"]}</priority>\n    </url>\n'
+        # Use clean URLs without .html for better SEO and consistency with canonical tags
+        clean_path = page["path"].replace(".html", "")
+        if clean_path == "index":
+            # Skip index.html as it's already added as root /
+            continue
+        sitemap_content += f'    <url>\n        <loc>{SITE_URL}/{clean_path}</loc>\n        <lastmod>{lastmod}</lastmod>\n        <changefreq>{page["freq"]}</changefreq>\n        <priority>{page["priority"]}</priority>\n    </url>\n'
 
 # Add Blog Posts
 if os.path.exists(BLOG_DIR):
