@@ -1,37 +1,92 @@
-# Robots.txt for saudia-visa.com - SEO Optimized
+# ═══════════════════════════════════════════════════════════════
+# robots.txt — مكتب تأشيرات السعودية | saudia-visa.com
+# السماح لجميع محركات البحث وبوتات الذكاء الاصطناعي
+# ═══════════════════════════════════════════════════════════════
 
-# Allow all bots to crawl the site
+# ─── السماح لكل البوتات المشروعة ────────────────────────────
 User-agent: *
 Allow: /
-Allow: /blog/
-Allow: /images/
-Allow: /assets/
-
-# Disallow admin panel and sensitive files
-Disallow: /admin/
-Disallow: /_data/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.webp
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.woff2
+Disallow: /admin-secure/
 Disallow: /content/
-Disallow: /*.json$
-Disallow: /*.yml$
-Disallow: /.env
-Disallow: /config.yml
+Disallow: /backend/
+Disallow: /frontend/
+Disallow: /.netlify/
 Disallow: /.git/
-Disallow: /node_modules/
+Disallow: /.emergent/
+Disallow: /.env
+Disallow: /*.yml$
+Disallow: /*.yaml$
+Disallow: /*.toml$
+Disallow: /*.config.js$
+Disallow: /post.html
+Disallow: /post$
+Crawl-delay: 0
 
-# Specific rules for Google
+# ─── Google ──────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
-Allow: /blog/
-Allow: /images/
-Allow: /professions.html
-Allow: /calculator.html
+Crawl-delay: 0
 
-# Specific rules for Bing
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /icons/
+Allow: /*.webp
+Allow: /*.png
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Bingbot
 Allow: /
-Allow: /blog/
 
-# Block bad bots
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ─── AI Crawlers ─────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ─── بوتات ضارة ──────────────────────────────────────────────
 User-agent: MJ12bot
 Disallow: /
 
@@ -41,9 +96,15 @@ Disallow: /
 User-agent: SemrushBot
 Disallow: /
 
-# Crawl delay (milliseconds)
-Crawl-delay: 1
-Request-rate: 1/1s
+User-agent: DotBot
+Disallow: /
 
-# Sitemap location
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+# ─── Sitemap & Host ──────────────────────────────────────────
 Sitemap: https://saudia-visa.com/sitemap.xml
+Host: https://saudia-visa.com
